@@ -76,14 +76,8 @@ const PrintDocument = ({
         });
 
     const formatCurrency = (value) => {
-        if (value === undefined || value === null) return '-';
-        const normalized =
-            typeof value === 'string'
-                ? value.replace(/[^0-9.-]/g, '')
-                : value;
-        const numberValue = Number(normalized);
-        if (!Number.isFinite(numberValue)) return '-';
-        return numberValue.toLocaleString(undefined, {
+        if (value === undefined || value === null || isNaN(value)) return '-';
+        return Number(value).toLocaleString('en-US', {
             minimumFractionDigits: 0,
             maximumFractionDigits: 2
         });
